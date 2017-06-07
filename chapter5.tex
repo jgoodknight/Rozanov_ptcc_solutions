@@ -1,0 +1,221 @@
+
+\chapter{Three Important Probability Distributions}
+
+\section{Important/Useful Theorems}
+
+\subsection{The Binomial Distribution}
+For $n$ trials where the probability of success is $p$ and the probability of failure is $q=1-p$, the probability of their being $k$ successes is:
+\begin{equation}
+	p(k) = \binom{n}{k} p^k q^{n-k}
+\end{equation}
+
+\subsection{The Poisson Distribution}
+For $n$ trials where the probability of success is $p$ and is very small and the number of trials is very large, the probability of their being $k$ successes is:
+\begin{equation}
+	p(k) = \frac{a^k}{k!}e^{-a}
+\end{equation}
+Where $a=np$, the average number of successes.
+
+\subsection{The Normal Distribution}
+As $n \rightarrow \infty$, the Binomial Distribution goes to:
+\begin{equation}
+	p(x) = \frac{1}{\sqrt{2 \piu \sigma^2}}e^{\frac{-(x-a)^2}{2 \sigma^2}}
+\end{equation}
+
+
+\section{Answers to Problems}
+
+
+\subsection{}
+%problem5.1
+If you call tails, there are two possibilities for the outcome of the coin-toss experiment which, since they are not correlated to your guess, are both one-half; similarly for heads.  Therefore, no matter what you do, the probability of guessing correctly is one-half.
+
+If, however, the coin is biased towards heads, there is a probability greater than one half that you'll win the trial if you call heads; therefore you should always call heads for a coin biased towards heads and similarly always call tails for a coin biased towards tails.
+
+\end{equation}
+\textbf{Answer not verified}
+
+
+\subsection{}
+%problem5.2
+
+In order to avoid any blatant sexism, we shall define  ``success'' as having a boy... What?  Anyway, for a couple having $n$ children, the probability of having $k$ boys will clearly follow a binomial distribution:
+
+\begin{equation}
+	p_n(k) = \binom{n}{k} \frac{1}{2^n}
+\end{equation}
+\subsubsection{a}
+\begin{equation}
+	p_{10}(5) = \binom{10}{5} \frac{1}{2^{10}} = \frac{63}{256} = 0.246094
+\end{equation}
+\subsubsection{b}
+\begin{equation}
+	p_{10}(3\rightarrow 7) = \sum_{i = 3}^7 \binom{10}{i} \frac{1}{2^{10}} = \frac{57}{64} = 0.890625
+\end{equation}
+\textbf{Answer not verified}
+
+
+\subsection{}
+%problem5.3
+
+Since $p=.001$ and $n=5000$ we can cautiously use the Poisson Distribution where $a=5$.  Since we want to know the probability of hitting 2 or more, we will take the probability of hitting either 0 or 1 and subtract from 1.
+
+\begin{equation}
+	p(k \geq 2) = 1 - p(0) - p(1) \approx 1 - \frac{5^0}{0!}e^{-5} - \frac{5^1}{1!}e^{-5} = 1 - 6e^{-5} \approx 0.96
+\end{equation}
+
+\textbf{Answer verified}
+
+\subsection{}
+%problem5.4
+
+Again we cautiously use the Poisson Distribution since $p=\frac{1}{500}$ and $n=500$ and again use the same trick as before to get the chance of greater than two ``successes''.
+\begin{equation}
+	p(k \geq 2) = 1 - p(0) - p(1) \approx 1 - \frac{1^0}{0!}e^{-1} - \frac{1^1}{1!}e^{-1} = 1 - \frac{2}{e} \approx 0.264241
+\end{equation}
+Note that the book has most definitely got this problem wrong as:
+\begin{equation}
+	p(k \geq 3) = 1 - p(0) - p(1) - p(2) \approx 1 - \frac{1^0}{0!}e^{-1} - \frac{1^1}{1!}e^{-1}- \frac{1^2}{2!}e^{-1} = 1 - \frac{5}{2e} \approx .0803
+\end{equation}
+
+\textbf{Answer verified-ish}
+
+
+\subsection{}
+%problem5.5
+
+Without any special cases, this problem is the good-old binomial distribution:
+
+\begin{equation}
+	p(k) = \binom{n}{k} p^k(1-p)^{n-k}
+\end{equation}
+So we simply sum up all the even probabilities:
+\begin{equation}
+	P_n = \sum_{i=0}^{\frac{n}{2}} p(2i) = \sum_{i=0}^{\frac{n}{2}} \binom{n}{2i} p^{2i}(1-p)^{2i-k}
+\end{equation}
+Which in the total lack of any skill in mathematics, I plug into Mathematica to get:
+\begin{equation}
+	P_n = \frac{1}{2} \left((1-2 p)^n+1\right)
+\end{equation}
+
+\textbf{Answer verified}
+
+\subsection{}
+%problem5.6
+In an infinite series of Bernouli trials, let the event that the $i^{th}$ 3-tuple has the pattern SFS be $A_i$ and $P(A_i)=p_i$.  Since we've designed these tuples to not overlap, these trials are independent such that:
+\begin{equation}
+	P\left( \bigcup_{i=1}^{\infty} A_i \right) = \sum _{i=1}^{\infty} p_i \rightarrow \infty
+\end{equation}
+By the second Borel-Cantelli lemma.
+
+\textbf{Answer not verified}
+
+\subsection{}
+%problem5.7
+
+WE want the probability of 3 or more very rare events happening in a large number of trials: this is a Poisson distribution with $a=1000\cdot0.001=1$
+\begin{equation}
+	p(k \geq 3) = 1 - p(0) - p(1) - p(2) \approx 1 - \frac{1^0}{0!}e^{-1} - \frac{1^1}{1!}e^{-1}- \frac{1^2}{2!}e^{-1} = 1 - \frac{5}{2e} \approx .0803
+\end{equation}
+
+\textbf{Answer not verified}
+
+\subsection{}
+%problem5.8
+
+We'll go ahead and call $p=\frac{1}{365}$ to be small and 730 to be big so that we can do Poisson with $a=2$.
+\begin{equation}
+	p(2) = \frac{2^2}{2!}e^{-2} = \frac{2}{e^2} \approx 0.270671
+\end{equation}
+
+\textbf{Answer not verified}
+
+\subsection{}
+%problem5.9
+
+\begin{equation}
+	\textbf{E}\xi = \sum_{k=0}^{\infty} k \frac{a^k}{k!}e^{-a} = e^{-a}a\sum_{k=0}^{\infty} \frac{a^{(k-1)}}{(k-1)!} = a
+\end{equation}
+\begin{equation}
+	\textbf{E}\xi^2 = \sum_{k=0}^{\infty} k^2 \frac{a^k}{k!}e^{-a} = a^2 + a
+\end{equation}
+That last one I got lazy and used Mathematica, sorry!  Clearly, though $\sigma^2 = a$.
+\begin{eqnarray}
+	\frac{\textbf{E}(\xi - a)^3}{\sigma^3} = \frac{\textbf{E}(\xi^3 - 3\xi^2a + 3\xia^2 - a^3)}{a^{\frac{3}{2}}} \\
+	 \textbf{E}\xi^3 = a^3+3 a^2+a \\
+	 \textbf{E}(\xi^3 - 3\xi^2a + 3\xi a^2 - a^3) = (a^3+3 a^2+a) - 3a(a^2 + a) + 3a^3 - a^3 = a \\
+	 \frac{\textbf{E}(\xi - a)^3}{\sigma^3} = \frac{a}{a^{\frac{3}{2}}} = \frac{1}{\sqrt{a}}
+\end{eqnarray}
+\textbf{Answer verified}
+
+\subsection{}
+%problem5.10
+
+\textbf{SKIPPED}
+
+\subsection{}
+%problem5.11
+Finally! something other than the Poisson distribution... back to... NORMAL!  Ha!
+\begin{eqnarray}
+	\textbf{E}x = np = 30 \\
+	\textbf{D}x = npq = 30\cdot .7 = 21 \\
+	p = \int_{20}^{40} \frac{1}{\sqrt{2 \pi 21}} e^{\frac{-(x-30)^2}{2 \cdot 21}} \approx 0.970904
+\end{eqnarray}
+\textbf{Answer verified}
+
+
+\subsection{}
+%problem5.12
+We want to know at one $n$ does this integral
+\begin{eqnarray}
+	\int_{.3}^{.5} \frac{1}{\sqrt{2 \pi .24/n}} e^{\frac{-(x-.4)^2}{2 \cdot .24/n}} \approx 0.9
+\end{eqnarray}
+A first pass going at intervals of 10 identifies the number being between 60 and 70 and a further pass going by one reveals that going from 64 to 65 breaks the .89 barrier.  Therefore $n=65$.
+
+Note that in order to get that $n$ in the denominator, we are taking the relative mean and the relative standard deviation: since both quantities get divided by $n$, the square of the standard deviation ends up with an $n$ in the denominator.
+\textbf{Answer verified}
+
+\subsection{}
+%problem5.13
+
+\begin{eqnarray}
+	\textbf{E}x = 60 \cdot .6 = 36 \\
+	\textbf{D}x = 36 \cdot .4 = 14.4 \\
+	p = \int_{30}^{\infty} \frac{1}{\sqrt{2 \pi 14.5}} e^{\frac{-(x-36)^2}{2 \cdot 14.4}} \approx 0.943077
+\end{eqnarray}
+
+\textbf{Answer verified}
+
+\subsection{}
+%problem5.14
+Perform the integrals as suggested.  Why can you?  Well, it feels right, doesn't it?  I found it impossible to come up with other than an intuitive reason for why this is true: sorry dear reader.
+
+\textbf{Answer verified-ish}
+
+\subsection{}
+%problem5.15
+
+\textbf{SKIPPED}
+
+
+\subsection{}
+%problem5.16
+Convolute the two distributions and the intended expression will come out: BOM!
+
+\textbf{Answer verified-ish}
+
+%%answer template
+%\subsection{}
+%%problem n.n
+%
+%
+%\begin{equation}
+%	
+%\label{answern.n}
+%\end{equation}
+%\textbf{Answer [not] verified}
+
+
+
+
+
